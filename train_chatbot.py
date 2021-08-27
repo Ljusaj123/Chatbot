@@ -103,7 +103,7 @@ model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy
 
 #treniranje modela
 hist = model.fit(train_x, train_y, epochs=900, batch_size=5, verbose=1)
-score = model.evaluate(test_x, test_y, batch_size=5, verbose = 1)
+score = model.evaluate(test_x, test_y, batch_size=2, verbose = 1)
 
 model.save('chatbot_model.h5', hist)
 print("model created")
