@@ -1,5 +1,3 @@
-#unos biblioteka
-import matplotlib.pyplot as plt
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Dropout
@@ -13,79 +11,72 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 
+
 #nltk.download('punkt')
 #nltk.download('wordnet')
 
-intents_file = open('intents.json').read() #otvaranje JSON datoteke
+intents_file = open('intents1.json').read() #otvaranje JSON datoteke
 data = json.loads(intents_file)
 
 words = [] # prazna lista riječi
 classes = [] #prazna lista oznaka
 documents = [] #prazna lista uzoraka s pridruženim oznakama
-ignore_letters = ['!', '?', ',', '.'] #znakovi koji će se izbacivati iz liste words
+ignore_letters = ['!', '?', ',', '.', 'I', 'you', 'me', 'a', 'an'] #znakovi koji će se izbacivati iz liste words
 
+# rastavljanje na liste
 for intent in data['intents']:
     for pattern in intent['patterns']:
-        # tokeniziraj svaki uzorak
+        # tokeniziranje, lematiziranje i uklanjanje interpukcijskih znakova
         word = nltk.word_tokenize(pattern)
-        words.extend(word)
-        #dodavanje parova uzoraka i oznaka
-        documents.append((word, intent['tag']))
-        # dodavanje oznaka u listu classes
-        if intent['tag'] not in classes:
-            classes.append(intent['tag'])
+        word = [lemmatizer.lemmatize(w.lower(), pos='v') for w in word if w not in ignore_letters]
+        words.extend(word) # dodavanje riječi
+        documents.append((word, intent['tag'])) #dodavanje parova uzoraka i oznaka
+        classes.append(intent['tag'])  # dodavanje oznaka u listu classes
 
-# lemmatiziranje, uklanjanje duplikata i interpukcijskih znakova
-words = [lemmatizer.lemmatize(w.lower()) for w in words if w not in ignore_letters]
+# sortiranje oznaka i uklanjanje duplikata
 words = sorted(list(set(words)))
-# sortiranje oznaka
 classes = sorted(list(set(classes)))
 
 #spremanje listi u pickle datoteku
-pickle.dump(words, open('words.pkl', 'wb'))
-pickle.dump(classes, open('classes.pkl', 'wb'))
+pickle.dump(words, open('words1.pkl', 'wb'))
+pickle.dump(classes, open('classes1.pkl', 'wb'))
 
 
 print(len(documents), "documents", documents)
 print(len(classes), "classes", classes)
 print(len(words), "unique lemmatized words", words)
 
-#stvaranje podataka za treniranje
+#pretvaranje parova iz documents u numerički oblik
 training = []
 # vreća riječi za svaki uzorak
 for doc in documents:
-    bag = [] # inicijalizacija vreće riječi
-    pattern_words = doc[0] # tokenizirane riječi uzorka
-    pattern_words = [lemmatizer.lemmatize(word.lower()) for word in pattern_words if word not in ignore_letters]
-
+    bag = list([0] * len(words))
+    output_row = list([0] * len(classes))
+    pattern_words = doc[0]
     # stvaranje vreće riječi za trenutni obrazac
     for word in words: # izlaz je 0 za svaku oznaku, a 1 za trenutnu oznaku
         bag.append(1) if word in pattern_words else bag.append(0)
 
     #vreća riječi za trenutni uzorak
-    output_row = list([0] * len(classes))
     output_row[classes.index(doc[1])] = 1
     training.append([bag, output_row])
 
-# stvaranje NumPy liste
+# pretvaranje u NumPy listu
 random.shuffle(training)
-#training = random.sample(training, len(training))
 training = np.array(training)
 
-# odvajanje podataka na podatke za treniranje i testiranje, X-> obrasci, Y-> oznake
-training_data = round(len(training)*0.7)
+# odvajanje podataka na podatke za treniranje i testiranje, X-> uzorak, Y-> oznaka
+training_data = round(len(training)*0.7) #70% za trening
 
 train_x = list(training[:training_data, 0])
 train_y = list(training[:training_data, 1])
+test_x1 = list(training[training_data:, 0])
+test_y1 = list(training[training_data:, 1])
 
-test_x = list(training[training_data:, 0])
-test_y = list(training[training_data:, 1])
-print(len(test_y))
+#spremanje datoteka test_x i test_y
 
-pickle.dump(train_x, open('train_x.pkl', 'wb'))
-pickle.dump(train_y, open('train_y.pkl', 'wb'))
-pickle.dump(test_x, open('test_x.pkl', 'wb'))
-pickle.dump(test_y, open('test_y.pkl', 'wb'))
+pickle.dump(test_x1, open('test_x1.pkl', 'wb'))
+pickle.dump(test_y1, open('test_y1.pkl', 'wb'))
 
 print("Training data created")
 
@@ -97,16 +88,18 @@ model.add(Dense(64, activation='relu'))
 model.add(Dropout(0.5))
 model.add(Dense(len(train_y[0]), activation='softmax'))
 
-
+#postavljanje optimizatora
 sgd = SGD(learning_rate=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 #treniranje modela
-hist = model.fit(train_x, train_y, epochs=900, batch_size=5, verbose=1)
-score = model.evaluate(test_x, test_y, batch_size=2, verbose = 1)
+hist = model.fit(train_x, train_y, epochs=1000, batch_size=4, verbose=1)
+score = model.evaluate(test_x1, test_y1, batch_size=4, verbose=1)
 
-model.save('chatbot_model.h5', hist)
+
+model.save('chatbot_model1.h5', hist) #mode21 91 x4 i y4, classes2 i words2
 print("model created")
+
 
 
 

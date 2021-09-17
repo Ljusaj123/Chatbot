@@ -12,7 +12,7 @@ LINE_COLOR="#000000"
 FONT ="Helvetica 14"
 FONT_BOLD = "Helvetica 13 bold"
 
-intents = json.loads(open('intents.json').read())
+intents = json.loads(open('intents2.json').read())
 
 
 class chatBox:
@@ -30,7 +30,7 @@ class chatBox:
         self.window.configure(width=600,heigh=850, bg=BG_COLOR)
 
         #head label
-        head_label = Label(self.window, bg=BG_COLOR, fg=HEADTEXT_COLOR, text="Welcome", font=FONT_BOLD, pady=17)
+        head_label = Label(self.window, bg=BG_COLOR, fg=HEADTEXT_COLOR, text="Chat Box", font=FONT_BOLD, pady=17)
         head_label.place(relwidth=1)
 
         # tiny devider
@@ -38,7 +38,7 @@ class chatBox:
         line.place(relwidth=1, rely=0.08, relheight=0.015)
 
         #text widget
-        self.text_widget = Text(self.window, width=20, wrap=WORD, heigh=2, bg=BG_CHAT, fg=TEXT_COLOR, font=FONT, padx=10,pady=5)
+        self.text_widget = Text(self.window, width=20, wrap=WORD, heigh=2, bg=BG_CHAT,fg=TEXT_COLOR, font=FONT, padx=10,pady=5)
         self.text_widget.insert(tkinter.INSERT, "Ana: Hello! How can I help you?\n\n")
         self.text_widget.place(relheigh=0.57, relwidth=0.95, rely=0.1, relx=0.025,)
         self.text_widget.configure(cursor="arrow", state=DISABLED)
