@@ -1,0 +1,298 @@
+{"intents": [
+        { "tag": "greeting_1",
+          "patterns": ["Ana",
+                      "Hi there",
+                      "Is anyone there?",
+                      "Hey",
+                      "Hola",
+                      "Hello",
+                      "Good day"],
+          "responses": ["Good to see you, how can I help you?",
+                       "Hi there, how can I help?"],
+          "context": [""],
+          "url": ""
+        },
+         { "tag": "thanks",
+          "patterns": ["Thanks",
+                       "Thank you",
+                       "That's helpful",
+                       "Awesome, thanks",
+                       "Thanks for helping me"],
+          "responses": ["Happy to help!",
+                        "Any time!",
+                        "My pleasure"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag": "greeting_2",
+          "patterns": ["How are you",
+                       "Are you OK?"],
+          "responses": ["I am fine, thanks for asking"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag": "goodbye",
+          "patterns": ["Bye",
+                       "See you later",
+                       "Goodbye",
+                       "Nice chatting to you, bye",
+                       "Till next time"],
+          "responses": ["See you!",
+                        "Have a nice day",
+                        "Bye! Come back again soon."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag": "noanswer",
+          "patterns": [],
+          "responses": ["Sorry, can't understand you",
+                        "Please give me more info",
+                        "Not sure I understand"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag": "options",
+          "patterns": ["How you could help me?",
+                       "What you can do for me?",
+                       "What help do you provide?",
+                       "How can you be helpful?",
+                       "What support is offered?"],
+          "responses": ["I can tell you infromations about:\nStudent service and university\nDifferent programs on university and what is required to get into them\nWhere are classrooms\nUniversity doctor\nInfo about sports and recreation within college and how to join them\nCanteens of university\nDifferent student associations\nWhere you can get your notes for study and to spend time between lectures \n\nAlso, i can open different services for you that are available on FESB site, like Elearning, Mail, Schedule etc."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"student_service1",
+          "patterns": ["What is student service?",
+                       "Tell me something about student service",
+                       "Student service"],
+          "responses": ["At Student service, you can get informations about your studies and program, the necessary documents for, like, a student bus card or you can report the disappearance of an X- card or if it is invalid.\nIf you want some more info, I can open a website for you."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"student_service2",
+          "patterns": ["When does student service work?",
+                       "What are the working hours of student service?",
+                       "Student service working time"],
+          "responses": ["Student service works from 10AM to 2PM on working days"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"student_service3",
+          "patterns": ["Where can i find student service?",
+                       "Tell me where is student service",
+                       "How can i find student service",
+                       "Location of student service"],
+          "responses": ["Student service is on the right side of the main entrance of college, straight down the hall."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"student_service4",
+          "patterns": ["How can I contact student service?",
+                       "Give me number of student service",
+                       "Student service phone"],
+          "responses": ["All contacts you need you can find on webpage. I can open it for you."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"student_service_page",
+          "patterns": ["Open webpage for student service",
+                       "Link me to student service",
+                       "student service page",
+                       "student service site",
+                       "student service website"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://www.fesb.unist.hr/studenti/studiranje-na-fesb-u/"
+        },
+
+        { "tag":"doctor",
+          "patterns": ["Where can i find doctor?",
+                      "Who is the competent doctor of the college?",
+                      "Doctor"],
+          "responses": ["The competent doctor of college is Hajdi Krstulović and her address is Bijankinijeva ulica 13 in Split.For more info, I can open a link."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"doctor_page",
+          "patterns": ["Open doctor webpage",
+                       "Open link for doctor"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://www.fesb.unist.hr/studenti/zdravlje-studenata/"
+        },
+
+        { "tag":"Sport_and_recreation1" ,
+          "patterns": ["Can i play some sport?",
+                       "What are available sports?",
+                       "Are there some recreational activities?",
+                       "Sport", "Gym", "Fitness"],
+          "responses": ["Yes! FESB offers a variety of activities that you can engage in. Team sports that are offered are soccer, handball, volleyball and also picigin.\nThere are \"Water\" sports, like waterpolo, swimming, rowing and sailing.\nYou can also sign up for skiing, tennis, chess and even the Bridge card game, which is an elective subject of FER!\nIf you like workout in gym or fitness centres, you can get a discount at certain gyms, just fill the form."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"sport_and_recreation2",
+          "patterns": ["Where can i fulfill the form?",
+                       "I want to join gym",
+                       "Where is the form?"],
+          "responses": ["Form to join th gym you can find on website"],
+          "context": [""],
+          "url": "https://elearning.fesb.unist.hr/course/view.php?id=232"
+        },
+
+        { "tag":"sport_and_recreation_page",
+          "patterns": ["Open page for sport",
+                       "Open link for sport"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://elearning.fesb.unist.hr/course/view.php?id=232"
+        },
+
+        { "tag":"free time",
+          "patterns": ["I am bored",
+                       "Where can I spend time between lectures?",
+                       "Where can I go study?"],
+          "responses": ["On the ground floor of the college is the Aquarium, an amphitheater with desks and Internet access, which is available to students until the close times of college. The student library is located on the second floor and you can use your time to study. If you just want to relax, there is a FESB caffe bar at the entrance from the college.\nThe University Library is also close and it is available until late hours. For students is available a large reading room on several floors, access to a computer for 3 hours a day and a large number of books."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"canteens",
+          "patterns": ["Does FESB have canteen?",
+                       "Where i can eat?",
+                       "Where are canteens?"],
+          "responses": ["Fesb offers two canteens, a snack bar (\"Stop\") on the ground floor and the Fesb restaurant on top of the building with a rich selection of dishes (students with an X are subsidized the price of food). To view the daily menu, visit: https: //www.scst. unist.hr/prehrana/restorani/31-restoran-fesb "],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"menu",
+          "patterns": ["Show me the menu of canteens",
+                       "what is on the menu?"],
+          "responses": [""],
+          "context": ["https: //www.scst. unist.hr/prehrana/restorani/31-restoran-fesb"],
+          "url": ""
+        },
+
+        { "tag":"copy_shop",
+          "patterns": ["Where i can get materials to study?",
+                       "Where is copy shop?",
+                       "Is there any copy shop?",
+                       "Where i can copy something"],
+          "responses": ["There are two copy shops, one on ground flor left from entrance and another on second floor, after stairs from entrance."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"services",
+          "patterns": ["Which service i can use?",
+                       "Where i can see my class schedule?",
+                       "Where i can see my grades?",
+                       "where i can sign for mail?"],
+          "responses": ["All services for schedule, info about professors and classrooms, mail, grades and other you can see at link: https://www.fesb.unist.hr/studenti/"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"rooms",
+          "patterns": ["Where is room ???",
+                       "I cant find my amfitheatar",
+                       "Can you show me where are computer labs",
+                       "I am lost, help me find my classroom"],
+          "responses": ["On FESB, there are 4 sections: A,B,C and D. First number signs on which floor is classroom and other two are for indexing. So, if you are looking for room C301, you will go on section C and floor 3. https://www.fesb.unist.hr/fakultet-opcenito/prostori/"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"library1",
+          "patterns": ["Library",
+                       "Where is library?",
+                       "I cant find library, where is it?"],
+          "responses": ["In library you can go study and use some books to learn some useful informations.Books are mostly on english and includes professional and scientific literature in the field of electrical engineering, informatics, mechanical engineering and shipbuilding.\nYou can find it on second floor, right next to the copy shop. "],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"library2",
+          "patterns": ["When does library work?",
+                       "Library working hours",
+                       "When does library work?"],
+          "responses": ["Library works from 8AM to 4PM."],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"library_page",
+          "patterns": ["Library page",
+                       "Open library page",
+                       "Show me library page",
+                       "library site"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://www.fesb.unist.hr/studenti/knjiznica/"
+        },
+
+        { "tag":"rooms",
+          "patterns": ["Where is room ???",
+                       "I cant find my amfitheatar",
+                       "Can you show me where are computer labs",
+                       "I am lost, help me find my classroom"],
+          "responses": ["On FESB, there are 4 sections: A,B,C and D. First number signs on which floor is classroom and other two are for indexing. So, if you are looking for room C301, you will go on section C and floor 3. https://www.fesb.unist.hr/fakultet-opcenito/prostori/"],
+          "context": [""],
+          "url": ""
+        },
+
+        { "tag":"fesb_page",
+          "patterns": ["Open fesb website",
+                       "open fesb site",
+                       "fesb naslovnica"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://www.fesb.unist.hr/"
+        },
+
+        { "tag":"elearning_page",
+          "patterns": ["Open elearning website",
+                       "open elearning site",
+                       "elearning"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://elearning.fesb.unist.hr//"
+        },
+
+        { "tag":"mail_page",
+          "patterns": ["Open email website",
+                       "open email site",
+                       "email", "mail"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://outlook.office.com/mail/inbox//"
+        },
+
+        { "tag":"schedule_page",
+          "patterns": ["Open schedule webpage",
+                       "open schedule site",
+                       "schedule"],
+          "responses": [""],
+          "context": [""],
+          "url": "https://raspored.fesb.unist.hr/raspored/studiji//"
+        }
+  ]
+}
+
+
+
+
+
+
+
