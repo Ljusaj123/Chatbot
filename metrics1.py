@@ -14,6 +14,7 @@ model = load_model('chatbot_model1.h5')
 
 test_x = pickle.load(open('test_x1.pkl', 'rb'))
 test_y = pickle.load(open('test_y1.pkl', 'rb'))
+print(test_x)
 
 #stvaranje predviđanja
 predictions = model.predict(test_x, batch_size=3, verbose=0)

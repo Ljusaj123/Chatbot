@@ -11,11 +11,9 @@ import nltk
 from nltk.stem import WordNetLemmatizer
 lemmatizer = WordNetLemmatizer()
 
-
-#nltk.download('punkt')
 #nltk.download('wordnet')
 
-intents_file = open('intents1.json').read() #otvaranje JSON datoteke
+intents_file = open('intents2.json').read() #otvaranje JSON datoteke
 data = json.loads(intents_file)
 
 words = [] # prazna lista riječi
@@ -38,8 +36,8 @@ words = sorted(list(set(words)))
 classes = sorted(list(set(classes)))
 
 #spremanje listi u pickle datoteku
-pickle.dump(words, open('words1.pkl', 'wb'))
-pickle.dump(classes, open('classes1.pkl', 'wb'))
+pickle.dump(words, open('words2.pkl', 'wb'))
+pickle.dump(classes, open('classes2.pkl', 'wb'))
 
 
 print(len(documents), "documents", documents)
@@ -50,7 +48,7 @@ print(len(words), "unique lemmatized words", words)
 training = []
 # vreća riječi za svaki uzorak
 for doc in documents:
-    bag = list([0] * len(words))
+    bag =[]
     output_row = list([0] * len(classes))
     pattern_words = doc[0]
     # stvaranje vreće riječi za trenutni obrazac
@@ -64,6 +62,7 @@ for doc in documents:
 # pretvaranje u NumPy listu
 random.shuffle(training)
 training = np.array(training)
+print(len(training))
 
 # odvajanje podataka na podatke za treniranje i testiranje, X-> uzorak, Y-> oznaka
 training_data = round(len(training)*0.7) #70% za trening
@@ -74,9 +73,8 @@ test_x1 = list(training[training_data:, 0])
 test_y1 = list(training[training_data:, 1])
 
 #spremanje datoteka test_x i test_y
-
-pickle.dump(test_x1, open('test_x1.pkl', 'wb'))
-pickle.dump(test_y1, open('test_y1.pkl', 'wb'))
+pickle.dump(test_x1, open('test_x2.pkl', 'wb'))
+pickle.dump(test_y1, open('test_y2.pkl', 'wb'))
 
 print("Training data created")
 
@@ -97,7 +95,7 @@ hist = model.fit(train_x, train_y, epochs=1000, batch_size=4, verbose=1)
 score = model.evaluate(test_x1, test_y1, batch_size=4, verbose=1)
 
 
-model.save('chatbot_model1.h5', hist) #mode21 91 x4 i y4, classes2 i words2
+model.save('chatbot_model2.h5', hist) #mode21 91 x4 i y4, classes2 i words2
 print("model created")
 
 

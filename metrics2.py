@@ -8,13 +8,13 @@ import matplotlib.pyplot as plt
 
 #učitavanje modela
 from keras.models import load_model
-model = load_model('chatbot_model2.h5') #NE DIRAJ
+model = load_model('chatbot_model2.h5')
 
 
 #učitavanje podataka za testiranje
 
-test_x = pickle.load(open('test_x2.pkl', 'rb'))#NE DIRAJ
-test_y = pickle.load(open('test_y2.pkl', 'rb'))#NE DIRAJ
+test_x = pickle.load(open('test_x2.pkl', 'rb'))
+test_y = pickle.load(open('test_y2.pkl', 'rb'))
 
 #stvaranje predviđanja
 predictions = model.predict(test_x, batch_size=8, verbose=0)

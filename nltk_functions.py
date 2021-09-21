@@ -13,8 +13,8 @@ from keras.models import load_model
 model = load_model('chatbot_model2.h5')
 
 intents = json.loads(open('intents2.json').read())
-words = pickle.load(open('words.pkl', 'rb'))
-classes = pickle.load(open('classes.pkl', 'rb'))
+words = pickle.load(open('words2.pkl', 'rb'))
+classes = pickle.load(open('classes2.pkl', 'rb'))
 
 #funkcija za čišćenje rečenice koje je unio korisnik
 def clean_up_sentence(sentence):
@@ -22,6 +22,7 @@ def clean_up_sentence(sentence):
     #tokenizacija rečenice i lematizacija
     sentence_words = nltk.word_tokenize(sentence)
     sentence_words = [lemmatizer.lemmatize(word.lower(), pos='v') for word in sentence_words if word not in ignore_letters]
+    print(sentence_words)
     return sentence_words #vraća se očišćena rečenica
 
 
@@ -43,9 +44,7 @@ def bag_of_words(sentence, words, show_details=True):
 def predict_class(sentence):
     # filter below  threshold predictions
     p = bag_of_words(sentence, words, show_details=False) #kao argumente uzima korisnikovu rečenicu i datoteku words
-    print(p)
     res = model.predict(np.array([p]))[0]
-    print(res)
     ERROR_THRESHOLD = 0.85
     results = [[i, r] for i, r in enumerate(res) if r > ERROR_THRESHOLD]
     if not results:
